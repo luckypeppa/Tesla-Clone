@@ -26,9 +26,11 @@ import MODELY from "../assets/Model-Y.jpg";
 import MODELS from "../assets/Model-S.jpg";
 import SOLARPANELS from "../assets/Solar-Panels.jpg";
 import SOLARROOF from "../assets/Solor-Roof.jpg";
+import _ from "lodash";
 export default {
   data() {
     return {
+      onIntersect: null,
       models: [
         {
           name: "Model 3",
@@ -59,8 +61,11 @@ export default {
       ],
     };
   },
+  created() {
+    this.onIntersect = _.throttle(this.intersect, 2000, { trailing: true });
+  },
   methods: {
-    onIntersect(entries) {
+    intersect(entries) {
       // console.log(entries);
       entries.forEach((entry) => {
         const id = entry.target.id;
