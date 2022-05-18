@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="banners">
     <v-row no-gutters v-for="(model, index) in models" :key="index">
       <v-col cols="12" class="banner">
         <v-img
@@ -16,6 +16,14 @@
         ></v-img>
       </v-col>
     </v-row>
+    <div class="home-modal">
+      <h1>{{ models[0].name }}</h1>
+      <p>{{ models[0].text }}</p>
+      <div class="buttons">
+        <v-btn color="#424242" dark width="300" rounded>CUSTOM ORDER</v-btn>
+        <v-btn color="#E0E0E0" width="300" rounded>EXISTING INVENTORY</v-btn>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -35,28 +43,34 @@ export default {
         {
           name: "Model 3",
           image: MODEL3,
+          text: "Order Online for Touchless Delivery",
         },
         {
           name: "Model Y",
           image: MODELY,
+          text: "Order Online for Touchless Delivery",
         },
         {
           name: "Model S",
           image: MODELS,
+          text: "Order Online for Touchless Delivery",
         },
 
         {
           name: "Model X",
           image: MODELX,
+          text: "Order Online for Touchless Delivery",
         },
 
         {
           name: "Solar Panel",
           image: SOLARPANELS,
+          text: "Order Online for Touchless Delivery",
         },
         {
           name: "Solar Roof",
           image: SOLARROOF,
+          text: "Order Online for Touchless Delivery",
         },
       ],
     };
@@ -79,8 +93,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bannner {
-  height: 100vh;
-  min-height: 100vh;
+.banners {
+  .bannner {
+    height: 100vh;
+    min-height: 100vh;
+  }
+
+  .home-modal {
+    position: absolute;
+    inset: 0;
+    text-align: center;
+
+    h1 {
+      margin-top: 15vh;
+      font-size: 3rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 50vh;
+    }
+  }
 }
 </style>
