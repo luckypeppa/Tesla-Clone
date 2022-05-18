@@ -1,13 +1,11 @@
-<template>
-  <hello-world />
-</template>
+<template><app-banner /></template>
 
 <script>
-import HelloWorld from "../components/HelloWorld";
+import AppBanner from "@/components/AppBanner.vue";
 
 export default {
   components: {
-    HelloWorld,
+    AppBanner,
   },
 };
 </script>
