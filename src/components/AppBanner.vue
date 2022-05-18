@@ -18,8 +18,8 @@
     </v-row>
     <div class="home-modal" v-if="currentModel" :style="{ opacity }">
       <h1>{{ currentModel.name }}</h1>
-      <h2>这是一个克隆网站!</h2>
-      <h2>This is a tesla website clone!</h2>
+      <h2>这是一个克隆网站! 仅作学习之用!</h2>
+      <h2>This is a tesla website clone! Only for learning purpose!</h2>
       <p>{{ currentModel.text }}</p>
       <div class="buttons">
         <v-row justify="center">
