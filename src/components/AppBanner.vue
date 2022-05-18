@@ -12,13 +12,15 @@
               threshold: 0.2,
             },
           }"
-          :id="`${index}-model`"
+          :id="index"
         ></v-img>
       </v-col>
     </v-row>
-    <div class="home-modal">
-      <h1>{{ models[0].name }}</h1>
-      <p>{{ models[0].text }}</p>
+    <div class="home-modal" v-if="currentModel" :style="{ opacity }">
+      <h1>{{ currentModel.name }}</h1>
+      <h2>这是一个克隆网站!</h2>
+      <h2>This is a tesla website clone!</h2>
+      <p>{{ currentModel.text }}</p>
       <div class="buttons">
         <v-btn color="#424242" dark width="300" rounded>CUSTOM ORDER</v-btn>
         <v-btn color="#E0E0E0" width="300" rounded>EXISTING INVENTORY</v-btn>
@@ -38,7 +40,10 @@ import _ from "lodash";
 export default {
   data() {
     return {
+      currentModelIndex: null,
       onIntersect: null,
+      scrollY: 0,
+      onScroll: null,
       models: [
         {
           name: "Model 3",
@@ -76,7 +81,9 @@ export default {
     };
   },
   created() {
+    this.currentModelIndex = this.$route.hash.slice(1);
     this.onIntersect = _.throttle(this.intersect, 2000, { trailing: true });
+    this.onScroll = _.throttle(this.scroll, 200, { leading: true });
   },
   methods: {
     intersect(entries) {
@@ -84,10 +91,31 @@ export default {
       entries.forEach((entry) => {
         const id = entry.target.id;
         if (entry.isIntersecting) {
+          this.currentModelIndex = id;
           this.$router.push({ path: "/", hash: `#${id}` });
         }
       });
     },
+    scroll() {
+      this.scrollY = window.scrollY;
+    },
+  },
+  computed: {
+    currentModel() {
+      return this.models[this.currentModelIndex];
+    },
+    opacity() {
+      const viewportHeight = document.documentElement.clientHeight;
+      const opacity =
+        1 -
+        (this.scrollY / viewportHeight -
+          Math.floor(this.scrollY / viewportHeight)) *
+          2.3;
+      return opacity;
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
   },
 };
 </script>
@@ -100,9 +128,10 @@ export default {
   }
 
   .home-modal {
-    position: absolute;
+    position: fixed;
     inset: 0;
     text-align: center;
+    transition: all 300ms ease;
 
     h1 {
       margin-top: 15vh;
