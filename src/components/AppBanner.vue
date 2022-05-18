@@ -146,13 +146,21 @@ export default {
     h1 {
       margin-top: 15vh;
       font-size: 3rem;
+
+      @media screen and (max-width: 400px) {
+        margin-top: 10vh;
+      }
     }
 
     .buttons {
       display: flex;
+      margin-top: 45vh;
       gap: 2rem;
       justify-content: center;
-      margin-top: 50vh;
+
+      @media screen and (max-width: 400px) {
+        margin-top: 35vh;
+      }
     }
   }
 }
