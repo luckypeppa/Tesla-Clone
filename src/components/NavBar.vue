@@ -11,12 +11,14 @@
       ></path>
     </svg>
     <v-spacer></v-spacer>
-    <v-btn
-      v-for="link in middleLinks"
-      :key="`${link}-header-middle-link`"
-      text
-      >{{ link }}</v-btn
-    >
+    <div v-if="$vuetify.breakpoint.lgAndUp">
+      <v-btn
+        v-for="link in middleLinks"
+        :key="`${link}-header-middle-link`"
+        text
+        >{{ link }}</v-btn
+      >
+    </div>
     <v-spacer></v-spacer>
     <v-btn v-for="link in rightLinks" :key="`${link}-header-right-link`" text>{{
       link

@@ -22,8 +22,18 @@
       <h2>This is a tesla website clone!</h2>
       <p>{{ currentModel.text }}</p>
       <div class="buttons">
-        <v-btn color="#424242" dark width="300" rounded>CUSTOM ORDER</v-btn>
-        <v-btn color="#E0E0E0" width="300" rounded>EXISTING INVENTORY</v-btn>
+        <v-row justify="center">
+          <v-col cols="7" md="3">
+            <v-btn color="#424242" dark width="100%" rounded
+              >CUSTOM ORDER</v-btn
+            >
+          </v-col>
+          <v-col cols="7" md="3">
+            <v-btn color="#E0E0E0" width="100%" rounded
+              >EXISTING INVENTORY</v-btn
+            >
+          </v-col>
+        </v-row>
       </div>
     </div>
   </div>
