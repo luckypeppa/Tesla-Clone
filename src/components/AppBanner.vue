@@ -9,7 +9,7 @@
           v-intersect="{
             handler: onIntersect,
             options: {
-              threshold: 0.2,
+              threshold: [0.2, 1],
             },
           }"
           :id="index"
@@ -92,7 +92,7 @@ export default {
   },
   created() {
     this.currentModelIndex = this.$route.hash ? this.$route.hash.slice(1) : 0;
-    this.onIntersect = _.throttle(this.intersect, 2000, { trailing: true });
+    this.onIntersect = _.throttle(this.intersect, 1500, { trailing: true });
     this.onScroll = _.throttle(this.scroll, 200, { leading: true });
   },
   methods: {
