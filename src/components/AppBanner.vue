@@ -91,7 +91,7 @@ export default {
     };
   },
   created() {
-    this.currentModelIndex = this.$route.hash.slice(1);
+    this.currentModelIndex = this.$route.hash ? this.$route.hash.slice(1) : 0;
     this.onIntersect = _.throttle(this.intersect, 2000, { trailing: true });
     this.onScroll = _.throttle(this.scroll, 200, { leading: true });
   },
