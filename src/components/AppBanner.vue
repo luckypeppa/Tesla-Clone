@@ -9,7 +9,7 @@
           v-intersect="{
             handler: onIntersect,
             options: {
-              threshold: [0.2, 1],
+              threshold: 0.1,
             },
           }"
           :id="index"
@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       currentModelIndex: null,
-      onIntersect: null,
+      timer: null,
       scrollY: 0,
       onScroll: null,
       models: [
@@ -92,17 +92,22 @@ export default {
   },
   created() {
     this.currentModelIndex = this.$route.hash ? this.$route.hash.slice(1) : 0;
-    this.onIntersect = _.throttle(this.intersect, 1500, { trailing: true });
     this.onScroll = _.throttle(this.scroll, 200, { leading: true });
   },
   methods: {
-    intersect(entries) {
-      // console.log(entries);
+    onIntersect(entries) {
       entries.forEach((entry) => {
         const id = entry.target.id;
         if (entry.isIntersecting) {
-          this.currentModelIndex = id;
-          this.$router.push({ path: "/", hash: `#${id}` });
+          if (this.timer !== null) {
+            clearTimeout(this.timer);
+            this.timer = null;
+          }
+
+          this.timer = setTimeout(() => {
+            this.currentModelIndex = id;
+            this.$router.push({ name: "home", hash: `#${id}` });
+          }, 700);
         }
       });
     },
@@ -115,7 +120,7 @@ export default {
       return this.models[this.currentModelIndex];
     },
     opacity() {
-      const viewportHeight = document.documentElement.clientHeight;
+      const viewportHeight = window.innerHeight;
       const opacity =
         1 -
         (this.scrollY / viewportHeight -
