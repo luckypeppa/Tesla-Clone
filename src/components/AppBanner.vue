@@ -24,11 +24,11 @@
       <div class="buttons">
         <v-row justify="center">
           <v-col cols="7" md="3">
-            <v-btn color="#424242" dark width="100%" rounded
-              >CUSTOM ORDER</v-btn
-            >
+            <v-btn color="#424242" dark width="100%" rounded>{{
+              currentModelIndex === "5" ? "SHOP NOW" : "CUSTOM ORDER"
+            }}</v-btn>
           </v-col>
-          <v-col cols="7" md="3">
+          <v-col cols="7" md="3" v-if="currentModelIndex !== '5'">
             <v-btn color="#E0E0E0" width="100%" rounded
               >EXISTING INVENTORY</v-btn
             >
@@ -98,7 +98,7 @@ export default {
     onIntersect(entries) {
       entries.forEach((entry) => {
         const id = entry.target.id;
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && this.$route.hash !== `#${id}`) {
           if (this.timer !== null) {
             clearTimeout(this.timer);
             this.timer = null;
@@ -106,7 +106,7 @@ export default {
 
           this.timer = setTimeout(() => {
             this.currentModelIndex = id;
-            this.$router.push({ name: "home", hash: `#${id}` });
+            this.$router.replace({ name: "home", hash: `#${id}` });
           }, 700);
         }
       });
