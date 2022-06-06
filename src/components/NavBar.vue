@@ -15,8 +15,10 @@
       <v-btn
         v-for="link in middleLinks"
         :key="`${link}-header-middle-link`"
+        :href="link.name"
+        rounded
         text
-        >{{ link }}</v-btn
+        >{{ link.text }}</v-btn
       >
     </div>
     <v-spacer></v-spacer>
@@ -31,12 +33,30 @@ export default {
   data() {
     return {
       middleLinks: [
-        "Model S",
-        "Model 3",
-        "Model X",
-        "Model Y",
-        "Solar Roof",
-        "Solar Panel",
+        {
+          text: "Model S",
+          name: "models",
+        },
+        {
+          text: "Model 3",
+          name: "",
+        },
+        {
+          text: "Model X",
+          name: "",
+        },
+        {
+          text: "Model Y",
+          name: "",
+        },
+        {
+          text: "Solar Roof",
+          name: "",
+        },
+        {
+          text: "Solar Panel",
+          name: "",
+        },
       ],
       rightLinks: ["Shop", "Account", "Menu"],
     };
