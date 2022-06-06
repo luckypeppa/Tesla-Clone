@@ -18,3 +18,16 @@ export default {
   }),
 };
 </script>
+
+<style lang="scss">
+.slide-up-transition {
+  &-enter {
+    transform: translateY(150px);
+    opacity: 0;
+  }
+
+  &-enter-active {
+    transition: all 1s ease-in;
+  }
+}
+</style>

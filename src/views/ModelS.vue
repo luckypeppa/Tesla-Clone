@@ -1,22 +1,33 @@
 <template>
-  <div class="hero">
-    <div class="overlay"></div>
-    <div class="heading">
-      <h1 class="text-h2">Model S</h1>
-      <p>Plaid</p>
+  <v-container fluid class="pa-0">
+    <div class="hero">
+      <div class="overlay"></div>
+      <div class="heading">
+        <h1 class="text-h2">Model S</h1>
+        <p>Plaid</p>
+      </div>
+      <v-container>
+        <v-row>
+          <v-col v-for="spec in specs" :key="`${spec.text}-spec`">
+            <h2 class="white--text">{{ spec.text }}</h2>
+            <p class="white--text">{{ spec.desc }}</p>
+          </v-col>
+          <v-col>
+            <v-btn outlined rounded color="white">ORDER NOW</v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
     </div>
-    <v-container>
-      <v-row>
-        <v-col v-for="spec in specs" :key="`${spec.text}-spec`">
-          <h2 class="white--text">{{ spec.text }}</h2>
-          <p class="white--text">{{ spec.desc }}</p>
-        </v-col>
-        <v-col>
-          <v-btn outlined rounded color="white">ORDER NOW</v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+
+    <div class="hero second">
+      <div class="overlay"></div>
+      <v-lazy transition="slide-up-transition">
+        <div class="heading">
+          <h1 class="text-h4 white--text">Interior of The Future</h1>
+        </div>
+      </v-lazy>
+    </div>
+  </v-container>
 </template>
 
 <script>
@@ -41,7 +52,17 @@ export default {
           desc: "Peak Power",
         },
       ],
+      showInteriorText: false,
     };
+  },
+  methods: {
+    onIntersect(entries) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          this.showInteriorText = true;
+        }
+      });
+    },
   },
 };
 </script>
@@ -61,18 +82,31 @@ export default {
   padding-top: 10rem;
 
   .overlay {
-    height: 30vh;
+    height: 35vh;
     position: absolute;
     z-index: -1;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(
-      to top,
-      black,
-      rgba(50, 50, 50, 0.8) 50%,
-      transparent
-    );
+    background: linear-gradient(to top, black, transparent);
   }
+
+  &.second {
+    background: url("../assets/Model-S-Interior.jfif");
+
+    .overlay {
+      bottom: auto;
+      top: 0;
+      background: linear-gradient(to bottom, black 40%, transparent);
+    }
+  }
+}
+
+.slide-up-enter-from {
+  transform: translateY(200px);
+}
+
+.slide-up-enter-active {
+  transition: all 200ms ease 1s;
 }
 </style>
