@@ -25,10 +25,12 @@
         <v-row justify="center">
           <v-col cols="7" md="3">
             <v-btn color="#424242" dark width="100%" rounded>{{
-              currentModelIndex === "5" ? "SHOP NOW" : "CUSTOM ORDER"
+              currentModelIndex === numOfModels - 1
+                ? "SHOP NOW"
+                : "CUSTOM ORDER"
             }}</v-btn>
           </v-col>
-          <v-col cols="7" md="3" v-if="currentModelIndex !== '5'">
+          <v-col cols="7" md="3" v-if="currentModelIndex !== numOfModels - 1">
             <v-btn color="#E0E0E0" width="100%" rounded
               >EXISTING INVENTORY</v-btn
             >
@@ -46,6 +48,7 @@ import MODELY from "../assets/Model-Y.jpg";
 import MODELS from "../assets/Model-S.jpg";
 import SOLARPANELS from "../assets/Solar-Panels.jpg";
 import SOLARROOF from "../assets/Solor-Roof.jpg";
+import ACCESSORY from "../assets/Accessory.jpg";
 import _ from "lodash";
 export default {
   data() {
@@ -87,6 +90,11 @@ export default {
           image: SOLARROOF,
           text: "Order Online for Touchless Delivery",
         },
+        {
+          name: "Accessories",
+          image: ACCESSORY,
+          text: "",
+        },
       ],
     };
   },
@@ -97,7 +105,7 @@ export default {
   methods: {
     onIntersect(entries) {
       entries.forEach((entry) => {
-        const id = entry.target.id;
+        const id = Number(entry.target.id);
         if (entry.isIntersecting && this.$route.hash !== `#${id}`) {
           if (this.timer !== null) {
             clearTimeout(this.timer);
@@ -127,6 +135,9 @@ export default {
           Math.floor(this.scrollY / viewportHeight)) *
           2.3;
       return opacity;
+    },
+    numOfModels() {
+      return this.models.length;
     },
   },
   mounted() {
