@@ -1,7 +1,12 @@
 <template>
   <div class="black pt-16 white--text">
     <v-container class="gallary">
-      <v-row v-for="(item, index) in items" :key="`${item.title}-gallary`">
+      <v-row
+        v-for="(item, index) in items"
+        :key="`${item.title}-gallary`"
+        class="ma-0"
+        no-gutters
+      >
         <v-col
           cols="6"
           :order="index % 2 === 1 ? 'last' : 'first'"
