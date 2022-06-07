@@ -27,10 +27,13 @@
         </div>
       </v-lazy>
     </div>
+
+    <VideoCarousel></VideoCarousel>
   </v-container>
 </template>
 
 <script>
+import VideoCarousel from "../components/VideoCarousel.vue";
 export default {
   data() {
     return {
@@ -64,6 +67,7 @@ export default {
       });
     },
   },
+  components: { VideoCarousel },
 };
 </script>
 
@@ -100,13 +104,5 @@ export default {
       background: linear-gradient(to bottom, black 40%, transparent);
     }
   }
-}
-
-.slide-up-enter-from {
-  transform: translateY(200px);
-}
-
-.slide-up-enter-active {
-  transition: all 200ms ease 1s;
 }
 </style>

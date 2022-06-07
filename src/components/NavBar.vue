@@ -14,7 +14,7 @@
     <div v-if="$vuetify.breakpoint.lgAndUp">
       <v-btn
         v-for="link in middleLinks"
-        :key="`${link.name}-header-middle-link`"
+        :key="`${link.text}-header-middle-link`"
         :href="link.name"
         rounded
         text
