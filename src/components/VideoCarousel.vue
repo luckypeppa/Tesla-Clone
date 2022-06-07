@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper pb-6">
     <div class="slider-container d-flex justify-center">
-      <v-container class="slider" transition="fade-transition">
+      <v-container class="slider">
         <video
           class="video-carousel"
           v-for="(videoSrc, index) in videoSrcs"
@@ -77,9 +77,6 @@ export default {
     };
   },
   mounted() {
-    // this.$refs.videos[0].classList.add("active");
-    // this.$refs.dots[0].classList.add("active");
-
     this.$refs.videos.forEach((video, index) => {
       const nextIndex = index >= this.numOfVideos - 1 ? 0 : index + 1;
 
@@ -89,22 +86,6 @@ export default {
   methods: {
     toggleVideo(index) {
       this.$refs.videos[this.activeIndex].pause();
-      //   this.$refs.videos.forEach((video, idx) => {
-      //     if (idx === index) {
-      //       this.activeIndex = index;
-      //       video.classList.add("active");
-      //       video.play();
-      //     } else {
-      //       video.classList.remove("active");
-      //       video.pause();
-      //     }
-      //   });
-
-      //   this.$refs.dots.forEach((dot) => {
-      //     dot.classList.remove("active");
-      //   });
-
-      //   this.$refs.dots[index].classList.add("active");
       this.activeIndex = index;
       this.$refs.videos[this.activeIndex].play();
     },

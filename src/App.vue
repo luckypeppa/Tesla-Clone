@@ -30,4 +30,16 @@ export default {
     transition: all 1s ease-in;
   }
 }
+
+.fade-slow-transition {
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+  }
+
+  &-enter-active,
+  &-leave-active {
+    transition: all 1s ease-in;
+  }
+}
 </style>
