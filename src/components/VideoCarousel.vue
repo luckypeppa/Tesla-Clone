@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper pb-6">
+  <div class="wrapper pb-16">
     <div class="slider-container d-flex justify-center">
       <v-container class="slider">
         <video
@@ -100,7 +100,6 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-  margin-bottom: 3rem;
   background-color: black;
   .slider-container {
     width: 100%;

@@ -29,10 +29,12 @@
     </div>
 
     <VideoCarousel></VideoCarousel>
+    <ImageGallary></ImageGallary>
   </v-container>
 </template>
 
 <script>
+import ImageGallary from "@/components/ImageGallary.vue";
 import VideoCarousel from "../components/VideoCarousel.vue";
 export default {
   data() {
@@ -67,7 +69,7 @@ export default {
       });
     },
   },
-  components: { VideoCarousel },
+  components: { VideoCarousel, ImageGallary },
 };
 </script>
 
