@@ -2,7 +2,11 @@
   <v-footer
     color="transparent lighten-1"
     padless
+<<<<<<< HEAD
     :absolute="this.$vuetify.breakpoint.md"
+=======
+    :absolute="this.$vuetify.breakpoint.mdAndUp"
+>>>>>>> responsive
   >
     <v-row justify="center" no-gutters>
       <v-col
