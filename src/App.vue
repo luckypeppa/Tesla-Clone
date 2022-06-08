@@ -20,6 +20,10 @@ export default {
 </script>
 
 <style lang="scss">
+body {
+  overflow-x: hidden;
+}
+
 .slide-up-transition {
   &-enter {
     transform: translateY(150px);

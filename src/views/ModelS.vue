@@ -8,20 +8,12 @@
       </div>
       <v-container class="spec-container">
         <v-row align="center">
-          <v-spacer></v-spacer>
-          <v-col
-            v-for="spec in specs"
-            :key="`${spec.text}-spec`"
-            cols="6"
-            md="2"
-          >
-            <h2 class="white--text">{{ spec.text }}</h2>
-            <p class="white--text">{{ spec.desc }}</p>
+          <v-col cols="12" md="9">
+            <car-spec :specs="specs"></car-spec>
           </v-col>
           <v-col cols="12" md="2">
             <v-btn outlined rounded color="white">ORDER NOW</v-btn>
           </v-col>
-          <v-spacer></v-spacer>
         </v-row>
       </v-container>
     </div>
@@ -47,6 +39,7 @@ import ImageGallary from "@/components/ImageGallary.vue";
 import VideoCarousel from "../components/VideoCarousel.vue";
 import SpecComparison from "@/components/SpecComparison.vue";
 import HelpMessager from "@/components/HelpMessager.vue";
+import CarSpec from "@/components/CarSpec.vue";
 export default {
   data() {
     return {
@@ -80,10 +73,16 @@ export default {
       });
     },
   },
-  components: { VideoCarousel, ImageGallary, SpecComparison, HelpMessager },
+  components: {
+    VideoCarousel,
+    ImageGallary,
+    SpecComparison,
+    HelpMessager,
+    CarSpec,
+  },
 };
 </script>
-
+, CarSpec
 <style lang="scss" scoped>
 .hero {
   width: 100%;
