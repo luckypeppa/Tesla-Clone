@@ -6,7 +6,12 @@
       </v-btn>
     </template>
 
-    <v-card color="white" rounded="xl" min-height="60vh">
+    <v-card
+      color="white"
+      rounded="xl"
+      min-height="60vh"
+      width="min(100vw, 40rem)"
+    >
       <v-card-title class="text-center" tag="h1">
         Question Center
       </v-card-title>

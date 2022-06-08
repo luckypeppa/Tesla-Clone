@@ -8,9 +8,10 @@
         no-gutters
       >
         <v-col
-          cols="6"
-          :order="index % 2 === 1 ? 'last' : 'first'"
-          :offset="index % 2 === 1 ? 1 : 0"
+          cols="12"
+          md="6"
+          :order-md="index % 2 === 1 ? 'last' : 'first'"
+          :offset-md="index % 2 === 1 ? 1 : 0"
         >
           <v-lazy
             :options="{
@@ -30,8 +31,9 @@
           </v-lazy>
         </v-col>
         <v-col
-          cols="5"
-          :offset="index % 2 === 1 ? 0 : 1"
+          cols="12"
+          md="5"
+          :offset-md="index % 2 === 1 ? 0 : 1"
           class="d-flex align-left flex-column justify-center"
         >
           <v-lazy
@@ -40,7 +42,7 @@
             }"
             transition="slide-up-transition"
           >
-            <div class="content">
+            <div class="content py-10">
               <h3>{{ item.title }}</h3>
               <p>{{ item.content }}</p>
             </div>

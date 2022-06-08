@@ -7,11 +7,13 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-spacer></v-spacer>
         <v-col
           v-for="(spec, _, index) in specs"
           :key="spec.name"
-          cols="5"
+          cols="10"
+          md="5"
+          offset="1"
+          :offset-md="index === 0 ? 1 : 0"
           :class="{
             content: true,
             'd-flex': true,
@@ -24,7 +26,6 @@
           <h3 class="name">{{ spec.name }}</h3>
           <p>{{ spec.desc }}</p>
         </v-col>
-        <v-spacer></v-spacer>
       </v-row>
     </v-container>
   </div>

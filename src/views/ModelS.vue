@@ -1,20 +1,27 @@
 <template>
   <v-container fluid class="pa-0">
-    <div class="hero">
+    <div class="hero pb-16">
       <div class="overlay"></div>
       <div class="heading">
         <h1 class="text-h2">Model S</h1>
         <p>Plaid</p>
       </div>
-      <v-container>
-        <v-row>
-          <v-col v-for="spec in specs" :key="`${spec.text}-spec`">
+      <v-container class="spec-container">
+        <v-row align="center">
+          <v-spacer></v-spacer>
+          <v-col
+            v-for="spec in specs"
+            :key="`${spec.text}-spec`"
+            cols="6"
+            md="2"
+          >
             <h2 class="white--text">{{ spec.text }}</h2>
             <p class="white--text">{{ spec.desc }}</p>
           </v-col>
-          <v-col>
+          <v-col cols="12" md="2">
             <v-btn outlined rounded color="white">ORDER NOW</v-btn>
           </v-col>
+          <v-spacer></v-spacer>
         </v-row>
       </v-container>
     </div>
@@ -83,6 +90,7 @@ export default {
   min-height: 100vh;
   background: url("../assets/Model-3.jpg");
   background-size: cover;
+  background-position: center center;
   position: relative;
   z-index: 1;
   text-align: center;
@@ -101,8 +109,13 @@ export default {
     background: linear-gradient(to top, black, transparent);
   }
 
+  .spec-container {
+    width: min(100%, 50rem);
+  }
+
   &.second {
     background: url("../assets/Model-S-Interior.jfif");
+    background-position: center center;
 
     .overlay {
       bottom: auto;
