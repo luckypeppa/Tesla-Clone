@@ -1,16 +1,21 @@
 <template>
-  <v-footer color="transparent lighten-1" padless absolute>
+  <v-footer
+    color="transparent lighten-1"
+    padless
+    :absolute="this.$vuetify.breakpoint.md"
+  >
     <v-row justify="center" no-gutters>
-      <v-btn
+      <v-col
+        cols="12"
+        md="auto"
+        class="d-flex justify-center"
         v-for="link in links"
         :key="link"
-        color="black"
-        text
-        rounded
-        class="my-2 text-caption"
       >
-        {{ link }}
-      </v-btn>
+        <v-btn color="black" text rounded class="my-2 text-caption">
+          {{ link }}
+        </v-btn>
+      </v-col>
     </v-row>
   </v-footer>
 </template>
