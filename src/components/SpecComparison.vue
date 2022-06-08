@@ -10,7 +10,7 @@
         <v-spacer></v-spacer>
         <v-col
           v-for="(spec, _, index) in specs"
-          :key="spec"
+          :key="spec.name"
           cols="5"
           :class="{
             content: true,

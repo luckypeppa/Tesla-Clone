@@ -31,6 +31,7 @@
     <VideoCarousel></VideoCarousel>
     <ImageGallary></ImageGallary>
     <spec-comparison></spec-comparison>
+    <help-messager></help-messager>
   </v-container>
 </template>
 
@@ -38,6 +39,7 @@
 import ImageGallary from "@/components/ImageGallary.vue";
 import VideoCarousel from "../components/VideoCarousel.vue";
 import SpecComparison from "@/components/SpecComparison.vue";
+import HelpMessager from "@/components/HelpMessager.vue";
 export default {
   data() {
     return {
@@ -71,7 +73,7 @@ export default {
       });
     },
   },
-  components: { VideoCarousel, ImageGallary, SpecComparison },
+  components: { VideoCarousel, ImageGallary, SpecComparison, HelpMessager },
 };
 </script>
 
