@@ -1,18 +1,9 @@
 <template>
-  <v-container fluid class="d-flex flex-column align-center">
+  <v-container fluid>
     <h1 class="text-center">ModelS</h1>
     <p class="text-center">Est. Delivery: Nov 2022 - Feb 2023</p>
-    <!-- <v-btn-toggle
-      v-model="toggleSaving"
-      class="toggle-saving d-flex grey lighten-3 rounded-xl pa-1"
-    >
-      <v-btn small text class="rounded-xl" :outlined="false">
-        Purchase Price
-      </v-btn>
-      <v-btn small text class="rounded-xl"> Potential Saving </v-btn>
-    </v-btn-toggle> -->
     <div
-      class="toggle-saving d-flex grey lighten-3 rounded-xl pa-1"
+      class="toggle-saving d-flex grey lighten-3 rounded-xl pa-1 mx-auto"
       active-class="btn-active"
     >
       <v-btn
@@ -38,16 +29,77 @@
         Potential Saving
       </v-btn>
     </div>
+
+    <car-spec :specs="specs[priceIndex]" color="black"></car-spec>
+
+    <h4 class="text-left d-block">Dual Motor All-Wheel Drive</h4>
+    <v-btn
+      text
+      class="d-flex justify-space-between rounded-xl mt-2 py-6 price-option"
+      width="100%"
+      :class="{ active: priceIndex === 0 }"
+      @click="togglePrice(0)"
+    >
+      <span>Models</span>
+      <span>$90,840</span>
+    </v-btn>
+    <h4 class="text-left d-block mt-4">Tri Motor All-Wheel Drive</h4>
+    <v-btn
+      text
+      class="d-flex justify-space-between rounded-xl mt-2 py-6 price-option"
+      width="100%"
+      :class="{ active: priceIndex === 1 }"
+      @click="togglePrice(1)"
+    >
+      <span>Models Plaid</span>
+      <span>$126,840</span>
+    </v-btn>
   </v-container>
 </template>
 
 <script>
+import CarSpec from "./CarSpec.vue";
 export default {
   data() {
     return {
       showSaving: false,
+      priceIndex: 0,
+      specs: [
+        [
+          {
+            value: 375,
+            unit: "mi",
+            desc: "Range (EPA est.)",
+          },
+          {
+            value: 3.1,
+            unit: "s",
+            desc: "0-60 mph*",
+          },
+          { value: 155, unit: "mph", desc: "Top Speed†" },
+        ],
+        [
+          {
+            value: 348,
+            unit: "mi",
+            desc: "Range (EPA est.)",
+          },
+          {
+            value: 1.99,
+            unit: "s",
+            desc: "0-60 mph*",
+          },
+          { value: 200, unit: "mph", desc: "Top Speed†" },
+        ],
+      ],
     };
   },
+  methods: {
+    togglePrice(index) {
+      this.priceIndex = index;
+    },
+  },
+  components: { CarSpec },
   //   methods: {
   //     toggleSaving(boolean) {},
   //   },
@@ -60,9 +112,18 @@ export default {
 // }
 
 .toggle-saving {
+  max-width: max-content;
 }
 
 .btn-active {
   background-color: #fff;
+}
+
+.price-option {
+  border: 1px solid grey;
+}
+
+.price-option.active {
+  border: 3px solid rgb(80, 80, 250);
 }
 </style>

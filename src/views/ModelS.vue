@@ -45,21 +45,17 @@ export default {
     return {
       specs: [
         {
-          text: "396 mi",
+          value: 375,
+          unit: "mi",
           desc: "Range (EPA est.)",
         },
         {
-          text: "1.99 s",
+          value: 3.1,
+          unit: "s",
           desc: "0-60 mph*",
         },
-        {
-          text: "200 mph",
-          desc: "Top Speed†",
-        },
-        {
-          text: "1,020 hp",
-          desc: "Peak Power",
-        },
+        { value: 155, unit: "mph", desc: "Top Speed†" },
+        { value: 1020, unit: "hp", desc: "Peak Power" },
       ],
       showInteriorText: false,
     };

@@ -15,9 +15,10 @@
       <v-btn
         v-for="link in middleLinks"
         :key="`${link.text}-header-middle-link`"
-        :href="link.name"
+        :to="{ name: link.name }"
         rounded
         text
+        class="nav-btn"
         >{{ link.text }}</v-btn
       >
     </div>
@@ -67,5 +68,9 @@ export default {
 <style lang="scss" scoped>
 .tds-icon {
   width: 10rem;
+}
+
+.nav-btn::before {
+  background-color: transparent;
 }
 </style>
