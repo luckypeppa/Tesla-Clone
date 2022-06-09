@@ -30,7 +30,7 @@
       </v-btn>
     </div>
 
-    <car-spec :specs="specs[priceIndex]" color="black"></car-spec>
+    <car-spec :specs="models[priceIndex].spec" color="black"></car-spec>
 
     <h4 class="text-left d-block">Dual Motor All-Wheel Drive</h4>
     <v-btn
@@ -40,8 +40,12 @@
       :class="{ active: priceIndex === 0 }"
       @click="togglePrice(0)"
     >
-      <span>Models</span>
-      <span>$90,840</span>
+      <span>{{ models[0].name }}</span>
+      <span>{{
+        showSaving
+          ? "$" + models[0].price.withSaving.value
+          : "$" + models[0].price.origin.value
+      }}</span>
     </v-btn>
     <h4 class="text-left d-block mt-4">Tri Motor All-Wheel Drive</h4>
     <v-btn
@@ -51,8 +55,12 @@
       :class="{ active: priceIndex === 1 }"
       @click="togglePrice(1)"
     >
-      <span>Models Plaid</span>
-      <span>$126,840</span>
+      <span>{{ models[1].name }}</span>
+      <span>{{
+        showSaving
+          ? "$" + models[1].price.withSaving.value
+          : "$" + models[1].price.origin.value
+      }}</span>
     </v-btn>
   </v-container>
 </template>
@@ -64,33 +72,55 @@ export default {
     return {
       showSaving: false,
       priceIndex: 0,
-      specs: [
-        [
-          {
-            value: 375,
-            unit: "mi",
-            desc: "Range (EPA est.)",
+      models: [
+        {
+          name: "Model S",
+          price: {
+            origin: {
+              value: 99990,
+            },
+            withSaving: {
+              value: 90840,
+            },
           },
-          {
-            value: 3.1,
-            unit: "s",
-            desc: "0-60 mph*",
+          spec: [
+            {
+              value: 375,
+              unit: "mi",
+              desc: "Range (EPA est.)",
+            },
+            {
+              value: 3.1,
+              unit: "s",
+              desc: "0-60 mph*",
+            },
+            { value: 155, unit: "mph", desc: "Top Speed†" },
+          ],
+        },
+        {
+          name: "Model S Plaid",
+          price: {
+            origin: {
+              value: 135990,
+            },
+            withSaving: {
+              value: 126840,
+            },
           },
-          { value: 155, unit: "mph", desc: "Top Speed†" },
-        ],
-        [
-          {
-            value: 348,
-            unit: "mi",
-            desc: "Range (EPA est.)",
-          },
-          {
-            value: 1.99,
-            unit: "s",
-            desc: "0-60 mph*",
-          },
-          { value: 200, unit: "mph", desc: "Top Speed†" },
-        ],
+          spec: [
+            {
+              value: 348,
+              unit: "mi",
+              desc: "Range (EPA est.)",
+            },
+            {
+              value: 1.99,
+              unit: "s",
+              desc: "0-60 mph*",
+            },
+            { value: 200, unit: "mph", desc: "Top Speed†" },
+          ],
+        },
       ],
     };
   },
