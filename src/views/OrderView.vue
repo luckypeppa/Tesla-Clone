@@ -37,6 +37,33 @@
           </p>
         </template>
       </BaseSelect>
+
+      <BaseSelect
+        title="Wheel"
+        v-model="selectedWheelIndex"
+        :numOfOptions="numOfOptions"
+        class="paint-select"
+      >
+        <template v-slot:options="{ onSelect }">
+          <img
+            @click="onSelect(index)"
+            v-for="(wheel, index) in wheels"
+            :key="`${index}-wheel`"
+            :src="wheel.img"
+          />
+        </template>
+        <template v-slot:descs="{ value }">
+          <p
+            v-show="value === index"
+            v-for="(wheel, index) in wheels"
+            :key="wheel.name"
+            class="paint-descs"
+          >
+            <span class="paint-desc">{{ wheel.name }}</span
+            ><span class="paint-price">{{ " $" + wheel.price }}</span>
+          </p>
+        </template>
+      </BaseSelect>
     </v-container>
   </v-contaienr>
 </template>
@@ -51,6 +78,9 @@ import paintBlue from "@/assets/paint/Paint_Blue.png";
 import paintRed from "@/assets/paint/Paint_Red.png";
 import paintMidnightSilver from "@/assets/paint/Paint_MidnightSilver.png";
 import paintWhite from "@/assets/paint/Paint_White.png";
+
+import arachnidWheel from "@/assets/wheel/21Arachnid.png";
+import tempestWheel from "@/assets/wheel/ui_swat_whl_tempest.png";
 export default {
   data() {
     return {
@@ -66,6 +96,15 @@ export default {
           price: 1500,
         },
         { img: paintWhite, name: "Pearl White Multi-Coat", price: "Included" },
+      ],
+      selectedWheelIndex: 0,
+      wheels: [
+        { img: tempestWheel, name: '19" Tempest Wheels', price: "Included" },
+        {
+          img: arachnidWheel,
+          name: '21" Arachnid Wheels',
+          price: 4500,
+        },
       ],
     };
   },
