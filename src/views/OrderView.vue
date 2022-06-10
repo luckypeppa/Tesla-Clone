@@ -64,6 +64,33 @@
           </p>
         </template>
       </BaseSelect>
+
+      <BaseSelect
+        title="Interior"
+        v-model="selectedInteriorIndex"
+        :numOfOptions="numOfOptions"
+        class="paint-select"
+      >
+        <template v-slot:options="{ onSelect }">
+          <img
+            @click="onSelect(index)"
+            v-for="(interior, index) in interiors"
+            :key="`${index}-interior`"
+            :src="interior.img"
+          />
+        </template>
+        <template v-slot:descs="{ value }">
+          <p
+            v-show="value === index"
+            v-for="(interior, index) in interiors"
+            :key="interior.name"
+            class="paint-descs"
+          >
+            <span class="paint-desc">{{ interior.name }}</span
+            ><span class="paint-price">{{ " $" + interior.price }}</span>
+          </p>
+        </template>
+      </BaseSelect>
     </v-container>
   </v-contaienr>
 </template>
@@ -81,6 +108,10 @@ import paintWhite from "@/assets/paint/Paint_White.png";
 
 import arachnidWheel from "@/assets/wheel/21Arachnid.png";
 import tempestWheel from "@/assets/wheel/ui_swat_whl_tempest.png";
+
+import interiorBlack from "@/assets/interior/Interior_Black.png";
+import interiorCream from "@/assets/interior/Interior_Cream.png";
+import interiorWhite from "@/assets/interior/Interior_White.png";
 export default {
   data() {
     return {
@@ -106,6 +137,12 @@ export default {
           price: 4500,
         },
       ],
+      selectedInteriorIndex: 0,
+      interiors: [
+        { img: interiorBlack, name: "All Black", price: "Included" },
+        { img: interiorCream, name: "All Cream", price: "2000" },
+        { img: interiorWhite, name: "All White", price: "2000" },
+      ],
     };
   },
   components: { AppSlider, CalcPrice, BaseSelect },
@@ -126,7 +163,7 @@ export default {
     }
 
     .paint-select {
-      margin: 10rem 0;
+      margin: 20rem 0;
       .paint-descs {
         text-align: center;
         margin-top: 1rem;
