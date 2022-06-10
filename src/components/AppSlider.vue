@@ -82,7 +82,7 @@ export default {
 
     img {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      height: 95vh;
       object-fit: cover;
     }
   }
