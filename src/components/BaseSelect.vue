@@ -66,13 +66,15 @@ h2 {
   & > * {
     width: 4rem;
     aspect-ratio: 1 / 1;
-    padding: 0.5rem;
-    border: 1px solid black;
+    padding: 0.3rem;
+    border: 2px solid transparent;
     object-fit: cover;
     border-radius: 50%;
+    transition: none;
 
     &.active {
-      border: 3px solid blue;
+      border: 2px solid blue;
+      transition: all 200ms ease-in-out;
     }
   }
 }
