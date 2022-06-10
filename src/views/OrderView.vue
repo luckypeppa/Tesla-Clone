@@ -1,7 +1,11 @@
 <template>
-  <v-contaienr fluid class="order-container pt-16 d-flex">
+  <v-container fluid class="order-container pt-16 d-flex">
     <app-slider />
-    <v-container fluid class="order-options flex-shrink-0 overflow-y-auto">
+    <v-container
+      fluid
+      class="order-options flex-shrink-0 overflow-y-auto"
+      ref="orderOptions"
+    >
       <div
         class="message pt-5 d-flex align-start grey lighten-3 px-5 rounded-lg mx-auto mb-16"
       >
@@ -92,7 +96,7 @@
         </template>
       </BaseSelect>
     </v-container>
-  </v-contaienr>
+  </v-container>
 </template>
 
 <script>
@@ -146,6 +150,17 @@ export default {
     };
   },
   components: { AppSlider, CalcPrice, BaseSelect },
+  mounted() {
+    window.addEventListener("wheel", (e) => {
+      this.$refs.orderOptions.scroll(
+        0,
+        this.$refs.orderOptions.scrollTop + e.deltaY
+      );
+    });
+  },
+  beforeDestroy() {
+    window.removeEventListener("wheel");
+  },
 };
 </script>
 
