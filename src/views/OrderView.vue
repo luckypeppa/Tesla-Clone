@@ -20,6 +20,12 @@
         v-model="selectedColorIndex"
         :numOfOptions="numOfOptions"
         class="paint-select"
+        v-intersect="{
+          handler: (entries) => onIntersect(entries, 0),
+          options: {
+            threshold: 1,
+          },
+        }"
       >
         <template v-slot:options="{ onSelect }">
           <img
@@ -47,6 +53,12 @@
         v-model="selectedWheelIndex"
         :numOfOptions="numOfOptions"
         class="paint-select"
+        v-intersect="{
+          handler: (entries) => onIntersect(entries, 1),
+          options: {
+            threshold: 1,
+          },
+        }"
       >
         <template v-slot:options="{ onSelect }">
           <img
@@ -74,6 +86,12 @@
         v-model="selectedInteriorIndex"
         :numOfOptions="numOfOptions"
         class="paint-select"
+        v-intersect="{
+          handler: (entries) => onIntersect(entries, 2),
+          options: {
+            threshold: 1,
+          },
+        }"
       >
         <template v-slot:options="{ onSelect }">
           <img
@@ -150,6 +168,15 @@ export default {
     };
   },
   components: { AppSlider, CalcPrice, BaseSelect },
+  methods: {
+    onIntersect(entries, index) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          this.$store.commit("SET_APPSLIDERACTIVEINDEX", index);
+        }
+      });
+    },
+  },
   mounted() {
     window.addEventListener("wheel", (e) => {
       this.$refs.orderOptions.scroll(
@@ -169,7 +196,7 @@ export default {
   height: 100vh;
   padding-top: 10vh;
   overflow: hidden;
-
+  padding: 0;
   .order-options {
     width: min(100%, 30rem);
 

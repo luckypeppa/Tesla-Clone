@@ -33,7 +33,6 @@ import { gsap } from "gsap";
 export default {
   data() {
     return {
-      activeIndex: 0,
       imgs: [fullImg, headImg, interiorImg, sideImg],
     };
   },
@@ -43,7 +42,7 @@ export default {
       if (newIndex > this.imgs.length - 1) newIndex = 0;
       if (newIndex < 0) newIndex = this.imgs.length - 1;
 
-      this.activeIndex = newIndex;
+      this.$store.commit("SET_APPSLIDERACTIVEINDEX", newIndex);
     },
     onBeforeEnter(el, done) {
       gsap.from(el, {
@@ -65,6 +64,11 @@ export default {
     onAfterLeave(el) {
       el.style.position = "relative";
       el.style.opacity = 1;
+    },
+  },
+  computed: {
+    activeIndex() {
+      return this.$store.state.appSliderActiveIndex;
     },
   },
 };

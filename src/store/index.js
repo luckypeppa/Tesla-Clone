@@ -4,9 +4,15 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    appSliderActiveIndex: 0,
+  },
   getters: {},
-  mutations: {},
+  mutations: {
+    SET_APPSLIDERACTIVEINDEX(state, index) {
+      state.appSliderActiveIndex = index;
+    },
+  },
   actions: {},
   modules: {},
 });

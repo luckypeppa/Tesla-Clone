@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <v-container>
     <h2>{{ title }}</h2>
     <div class="select" ref="select">
       <slot name="options" :onSelect="changeModelValue"></slot>
     </div>
 
     <slot name="descs" :value="value"></slot>
-  </div>
+  </v-container>
 </template>
 
 <script>
