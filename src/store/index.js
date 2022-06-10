@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    appSliderActiveIndex: 0,
+    appSliderActiveIndex: 3,
   },
   getters: {},
   mutations: {
