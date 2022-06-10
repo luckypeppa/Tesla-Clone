@@ -3,6 +3,7 @@
     color="transparent lighten-1"
     padless
     :absolute="this.$vuetify.breakpoint.mdAndUp"
+    v-show="$route.name !== 'order'"
   >
     <v-row justify="center" no-gutters>
       <v-col
