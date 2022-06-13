@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="order-container pt-16 d-flex">
-    <app-slider />
+    <app-slider v-if="this.$vuetify.breakpoint.mdAndUp" />
     <v-container
       fluid
       class="order-options flex-shrink-0 overflow-y-auto"
@@ -13,8 +13,20 @@
         <p>$750 Clean Fuel Reward is now available for California residents.</p>
       </div>
 
+      <img
+        class="order-image"
+        :src="imgs[0]"
+        alt=""
+        v-if="this.$vuetify.breakpoint.smAndDown"
+      />
       <calc-price></calc-price>
 
+      <img
+        class="order-image"
+        :src="imgs[0]"
+        alt=""
+        v-if="this.$vuetify.breakpoint.smAndDown"
+      />
       <BaseSelect
         title="Paint"
         v-model="selectedColorIndex"
@@ -48,6 +60,12 @@
         </template>
       </BaseSelect>
 
+      <img
+        class="order-image"
+        :src="imgs[1]"
+        alt=""
+        v-if="this.$vuetify.breakpoint.smAndDown"
+      />
       <BaseSelect
         title="Wheel"
         v-model="selectedWheelIndex"
@@ -81,6 +99,12 @@
         </template>
       </BaseSelect>
 
+      <img
+        class="order-image"
+        :src="imgs[2]"
+        alt=""
+        v-if="this.$vuetify.breakpoint.smAndDown"
+      />
       <BaseSelect
         title="Interior"
         v-model="selectedInteriorIndex"
@@ -134,6 +158,11 @@ import tempestWheel from "@/assets/wheel/ui_swat_whl_tempest.png";
 import interiorBlack from "@/assets/interior/Interior_Black.png";
 import interiorCream from "@/assets/interior/Interior_Cream.png";
 import interiorWhite from "@/assets/interior/Interior_White.png";
+
+import fullImg from "@/assets/order-slider/models/full.jpg";
+import headImg from "@/assets/order-slider/models/head.jpg";
+import interiorImg from "@/assets/order-slider/models/interior.jpg";
+import sideImg from "@/assets/order-slider/models/side.jpg";
 export default {
   data() {
     return {
@@ -165,6 +194,7 @@ export default {
         { img: interiorCream, name: "All Cream", price: "2000" },
         { img: interiorWhite, name: "All White", price: "2000" },
       ],
+      imgs: [fullImg, headImg, interiorImg, sideImg],
     };
   },
   components: { AppSlider, CalcPrice, BaseSelect },
@@ -201,12 +231,22 @@ export default {
   .order-options {
     width: min(100%, 30rem);
 
+    .order-image {
+      width: 100%;
+      object-fit: cover;
+    }
+
     &::-webkit-scrollbar {
       display: none;
     }
 
     .paint-select {
-      margin: 10rem 0 25rem 0;
+      margin: 5rem 0;
+      @media (min-width: 960px) {
+        & {
+          margin: 10rem 0 25rem 0;
+        }
+      }
       .paint-descs {
         text-align: center;
         margin-top: 1rem;
