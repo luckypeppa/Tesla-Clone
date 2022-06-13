@@ -176,17 +176,18 @@ export default {
         }
       });
     },
-  },
-  mounted() {
-    window.addEventListener("wheel", (e) => {
+    onScroll(e) {
       this.$refs.orderOptions.scroll(
         0,
         this.$refs.orderOptions.scrollTop + e.deltaY
       );
-    });
+    },
+  },
+  mounted() {
+    window.addEventListener("wheel", this.onScroll);
   },
   beforeDestroy() {
-    window.removeEventListener("wheel");
+    window.removeEventListener("wheel", this.onScroll);
   },
 };
 </script>
@@ -205,7 +206,7 @@ export default {
     }
 
     .paint-select {
-      margin: 20rem 0;
+      margin: 10rem 0 25rem 0;
       .paint-descs {
         text-align: center;
         margin-top: 1rem;
